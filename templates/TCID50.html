@@ -1,0 +1,151 @@
+<html>
+
+    <head>
+ 
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+            integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  
+        <title>CellPin TCID50 calculator</title>   
+  
+        <style>
+            .img{
+                height: 500px;
+            }
+  
+            figure{
+                display: inline-block;
+                text-align: center;
+            }
+        </style>
+    </head>
+
+    <body>
+        
+        <style> 
+            .centered { display: table; margin-left: auto; margin-right: auto; } 
+        </style>
+
+        <div class="centered">
+            <br><h1>CellPin </h1>
+        </div>
+
+        <div class = "container">
+            <div class="jumbotron mt-3">
+               
+                <h1>TCID50(Tissue Culture Infective Dose 50%) Calculator</h1>
+                <br>
+                <A>This application will calculate the TCID50 by entering the following variables.</A><br>
+          
+                <hr class="solid">
+               
+                <div id="sampleBox">
+                    <!-- <h2>Example</h2> -->
+                    <figure>
+                        <img class="img" src="../images/TCID50.png" alt="TCID50_image">
+                        <figcaption>TCID50</figcaption>
+                    </figure>
+
+                </div>
+                <br>
+
+                <div id = 'inputVariable'>                   
+                    <h4>Total number of wells in a row(W)</h4>
+                    <input type="value" id="well" name="well" placeholder="W" required="required" /><br><br>
+
+                    <h4>Number of CPE in a row diluted by 10^-1(T1)</h4>
+                    <input type="value" id="dilution_1" name="dilution_1" placeholder="T1" required="required" /><br><br>
+
+                    <h4>Number of CPE in a row diluted by 10^-2(T2)</h4>
+                    <input type="value" id="dilution_2" name="dilution_2" placeholder="T2" required="required" /><br><br>
+
+                    <h4>Number of CPE in a row diluted by 10^-3(T3)</h4>
+                    <input type="value" id="dilution_3"  name="dilution_3" placeholder="T3" required="required" /><br><br>
+
+                    <h4>Number of CPE in a row diluted by 10^-4(T4)</h4>
+                    <input type="value" id="dilution_4"  name="dilution_4" placeholder="T4" required="required" /><br><br>
+
+                    <h4>Number of CPE in a row diluted by 10^-5(T5)</h4>
+                    <input type="value" id="dilution_5"  name="dilution_5" placeholder="T5" required="required" /><br><br>
+
+                    <h4>Number of CPE in a row diluted by 10^-6(T6)</h4>
+                    <input type="value" id="dilution_6"  name="dilution_6" placeholder="T6" required="required" /><br><br>
+
+                    <h4>Number of CPE in a row diluted by 10^-7(T7)</h4>
+                    <input type="value" id="dilution_7"  name="dilution_7" placeholder="T7" required="required" /><br><br>
+
+                    <h4>Number of CPE in a row diluted by 10^-8(T8)</h4>
+                    <input type="value" id="dilution_8"  name="dilution_8" placeholder="T8" required="required" /><br><br>
+                    <br>
+                    
+                    <h3>Calculate TCID50</h3>
+                    <button id = "submit" type='submit' class="btn btn-primary btn-lg" style="margin-left: auto;"> Run </button>            
+                </div>
+
+                <div id ='resultBox' style="margin-left: auto; margin-right: auto;">
+                    <p id='errorbox'></p>
+                    <p id='result'></p>
+                </div>
+                <script>
+                    document.getElementById("submit").onclick = () => {
+                        var formData = new FormData();
+                        var well = document.getElementById('well').value;
+                        var dilution_1 = document.getElementById('dilution_1').value;
+                        var dilution_2 = document.getElementById('dilution_2').value;
+                        var dilution_3 = document.getElementById('dilution_3').value;
+                        var dilution_4 = document.getElementById('dilution_4').value;
+                        var dilution_5 = document.getElementById('dilution_5').value;
+                        var dilution_6 = document.getElementById('dilution_6').value;
+                        var dilution_7 = document.getElementById('dilution_7').value;
+                        var dilution_8 = document.getElementById('dilution_8').value;
+          
+                        formData.append('well', well);
+                        formData.append('dilution_1', dilution_1);
+                        formData.append('dilution_2', dilution_2);
+                        formData.append('dilution_3', dilution_3);
+                        formData.append('dilution_4', dilution_4);
+                        formData.append('dilution_5', dilution_5);
+                        formData.append('dilution_6', dilution_6);
+                        formData.append('dilution_7', dilution_7);
+                        formData.append('dilution_8', dilution_8);
+          
+                        fetch(
+                            '/TCID50_calculator',
+                            {
+                                method: 'POST',
+                                body: formData
+                            }
+                        )
+                        .then(response => {
+                            if (response.status == 200) {
+                                return response.text();
+                            }
+                            else {
+                                throw Error("Variable error");
+                            }
+                        }).then(text => {
+                            document.getElementById('result').innerText = text;
+                        }).catch(e =>{
+                            document.getElementById("errorbox").innerHTML = e;
+                        });
+                    };
+                </script>
+
+            </div>
+            
+            <h2>If you want to go back CPE Classifier </h2>
+            <a id = "button02" href="/" class="btn btn-primary btn-lg" style="margin-left: auto;"> Click Here </a><br><br><br>
+            
+            <hr class="solid">
+            <A><b>CellPin</b></A><br>
+            <A>Git Hub repository: </A> <A href="https://github.com/CellPin"> CellPin</A><br>
+            <A>Contributor: Hyeseong Lee, Donghun lee, Kipyo Ryu, Jonghoon Park, Jeongwoo Kim</A><br>
+            <A>Data Contribution: Virology Lab(Hye Kwon Kim, D.V.M., Ph. D. Assistant Professor), Department of Microbiology, College of Natural Science, Chungbuk National University</A><br><br>
+        </div>
+    </body>
+
+</html>

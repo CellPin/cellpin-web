@@ -1,0 +1,150 @@
+<html>
+
+    <head>
+ 
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+            integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  
+        <title>CellPin CPE Classifier</title>   
+  
+        <style>
+            .img{
+                height: 250px;
+            }
+  
+            figure{
+                display: inline-block;
+                text-align: center;
+            }
+            
+
+            #image_container{
+                height:250px;
+                margin-top: 10px;
+                overflow:hidden; 
+                position:relative;
+                }
+
+            #image_container>img{
+                height:250px; 
+                position:absolute;
+                }
+
+        </style>
+    </head>
+
+    <body>
+        <style> 
+            .centered { display: table; margin-left: auto; margin-right: auto; } 
+        </style>
+
+        <div class="centered">
+            <br><h1>CellPin </h1>
+        </div>
+
+        <div class = "container">
+            
+            <div class="jumbotron mt-3">
+               
+                <h1>CPE(Cytopathic Effect) Classifier</h1>
+                <br>
+                <A>This application classifies whether cells in the given image(X100 magnification) are normal or infected(CPE).</A><br>
+          
+                <hr class="solid">
+               
+                <div id="sampleBox">
+                    <h2>Example</h2>
+                    <figure>
+                        <img class="img" src="../images/Normal.png" alt="Normal_image">
+                        <img class="img" src="../images/CPE.png" alt="CPE_image">
+                        <figcaption>normal image sample&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CPE image sample</figcaption>
+                    </figure>
+                </div>
+                <br>
+                
+                <h3>Select your virus - cell</h3>
+                <div id = 'selectbox'>
+                    <select name="virus_cell" id="virus_cell">
+                        <option value="">virus - cell select</option>
+                        <option value="PRRSV_MARC">PRRSV - MARC</option>
+                    </select>                
+                </div>
+
+                <br><br>
+
+                <h2>Upload </h2>
+                <div id = 'inputImage'>
+                    <label for="source">Source CPE image : </label>
+                    <!-- <input type = 'file' id = 'source' style="margin-right: 10px; margin-bottom: 10px;"> -->
+                    <input type="file" id="source" accept="image/*" onchange="setThumbnail(event);"/> 
+                    <button id = "submit" type='submit' class="btn btn-primary btn-lg" style="margin-left: 0px;"> Run </button>
+                    <div id="image_container"></div> 
+                    
+                    <script> 
+                    function setThumbnail(event) { 
+                        var reader = new FileReader(); 
+                        reader.onload = function(event) { var img = document.createElement("img"); 
+                        img.setAttribute("src", event.target.result); 
+                        document.querySelector("div#image_container").appendChild(img); 
+                        }; 
+                        
+                        reader.readAsDataURL(event.target.files[0]); 
+                        } 
+                        </script>
+
+
+                </div>
+               
+                <div id ='resultBox' style="margin-left: auto; margin-right: auto;">
+                    <p id='result'></p>
+                </div>
+                <script>
+                    document.getElementById("submit").onclick = () => {
+                        var formData = new FormData();
+                        var source = document.getElementById('source').files[0];
+                        var virus_cell = document.getElementById('virus_cell');
+                        var virus_cell = virus_cell.options[virus_cell.selectedIndex].value;
+          
+                        formData.append('source', source);
+                        formData.append('virus_cell', virus_cell);
+          
+                        fetch(
+                            '/image',
+                            {
+                                method: 'POST',
+                                body: formData
+                            }
+                        )
+                        .then(response => {
+                            if (response.status == 200) {
+                                return response.text();
+                            }
+                            else {
+                                throw Error("Loading image error");
+                            }
+                        }).then(text => {
+                            document.getElementById('result').innerText = text;
+                        }).catch(e =>{
+                            document.getElementById("result").innerHTML = e;
+                        });
+                    };
+                </script>
+            </div>
+            
+            <h2> If you want to calculate TCID50 </h2>
+            <a id = "button01" href="/TCID50" class="btn btn-primary btn-lg" style="margin-left: auto;"> Click Here </a><br><br><br>
+             
+            <hr class="solid">
+            <A><b>CellPin</b></A><br>
+            <A>Git Hub repository: </A> <A href="https://github.com/CellPin"> CellPin</A><br>
+            <A>Contributor: Hyeseong Lee, Donghun lee, Kipyo Ryu, Jonghoon Park, Jeongwoo Kim</A><br>
+            <A>Data Contribution: Virology Lab(Hye Kwon Kim, D.V.M., Ph. D. Assistant Professor), Department of Microbiology, College of Natural Science, Chungbuk National University</A><br><br>
+        </div>        
+    </body>
+
+</html>
