@@ -1,7 +1,7 @@
 # CellPin
-This application offer two functions.
-    - distinguish given cell image whether CPE or not CPE(Normal)
-    - calculate TCID50 when you input following variables
+This application offer two functions.<br/>
+    - classifies whether cells in the given image(X100 magnification) are normal or infected(CPE)<br/>
+    - calculates the TCID50
 
 ## Contribution
 CellPin Team building
