@@ -27,7 +27,7 @@ def TCID50_Calculator(well, d_1, d_2, d_3, d_4, d_5, d_6, d_7, d_8):
         infected_rate.append(np.round(A[-(i+1)]/(A[-(i+1)]+B[i]), 3) * 100)
     
     
-    # 비례거리 계Proportionate Distance
+    # 비례거리 계산 Proportionate Distance
     positive_above = []
     positive_below = []
     for i in infected_rate:
@@ -38,7 +38,7 @@ def TCID50_Calculator(well, d_1, d_2, d_3, d_4, d_5, d_6, d_7, d_8):
         else:
             continue
         
-    proportionate_distance = np.round((min(positive_above) - 50) / (min(positive_above) - max(positive_below)), 1)
+    proportionate_distance = np.round((min(positive_above) - 50) / (min(positive_above) - max(positive_below)), 2)
 
     
     # log ID_{50} : 세포단층 50%를 감여시키는 희석배수

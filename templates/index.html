@@ -53,16 +53,16 @@
                
                 <h1>CPE(Cytopathic Effect) Classifier</h1>
                 <br>
-                <A>This application classifies whether cells in the given image(X100 magnification) are normal or infected(CPE).</A><br>
+                <A>This application classifies whether cells in the given image(X100 magnification) are CPE or No CPE.</A><br>
           
                 <hr class="solid">
                
                 <div id="sampleBox">
                     <h2>Example</h2>
                     <figure>
-                        <img class="img" src="../images/Normal.png" alt="Normal_image">
                         <img class="img" src="../images/CPE.png" alt="CPE_image">
-                        <figcaption>normal image sample&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CPE image sample</figcaption>
+                        <img class="img" src="../images/No_CPE.png" alt="No_CPE_image">
+                        <figcaption>CPE image sample&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; No CPE image sample</figcaption>
                     </figure>
                 </div>
                 <br>
@@ -71,13 +71,14 @@
                 <div id = 'selectbox'>
                     <select name="virus_cell" id="virus_cell">
                         <option value="">virus - cell select</option>
-                        <option value="PRRSV_MARC">PRRSV - MARC</option>
+                        <option value="PRRSV_MARC">PRRSV - MARC145</option>
                     </select>                
                 </div>
 
                 <br><br>
 
                 <h2>Upload </h2>
+                <A>Please upload X100 magnification image. </A>
                 <div id = 'inputImage'>
                     <label for="source">Source CPE image : </label>
                     <!-- <input type = 'file' id = 'source' style="margin-right: 10px; margin-bottom: 10px;"> -->

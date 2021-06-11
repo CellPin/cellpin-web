@@ -67,9 +67,9 @@ def prediction_base(model, image):
     predicted_image = model.predict(test_ds)
 
     if predicted_image >= 0.5:
-        return str('CPE 입니다.')
+        return str('CPE.')
     elif predicted_image < 0.5:
-        return str(' Normal 입니다.')
+        return str('No CPE.')
 
 
 # if __name__== '__main__':

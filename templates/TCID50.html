@@ -44,7 +44,6 @@
                 <hr class="solid">
                
                 <div id="sampleBox">
-                    <!-- <h2>Example</h2> -->
                     <figure>
                         <img class="img" src="../images/TCID50.png" alt="TCID50_image">
                         <figcaption>TCID50</figcaption>
@@ -87,7 +86,6 @@
                 </div>
 
                 <div id ='resultBox' style="margin-left: auto; margin-right: auto;">
-                    <p id='errorbox'></p>
                     <p id='result'></p>
                 </div>
                 <script>
@@ -130,7 +128,7 @@
                         }).then(text => {
                             document.getElementById('result').innerText = text;
                         }).catch(e =>{
-                            document.getElementById("errorbox").innerHTML = e;
+                            document.getElementById("result").innerHTML = e;
                         });
                     };
                 </script>

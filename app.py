@@ -20,12 +20,6 @@ def index():
 def TCID50(): 
     return render_template('TCID50.html')
 
-# @app.route("/select_box", methods = ['POST'])
-# def select_box():
-#     selectVirusCell = request.form.get('virus_cell') 
-#     if selectVirusCell == 'PRRSV_MARC':
-#         model = model_build()
-
 
 @app.route("/image", methods = ['POST'])
 def get_result():   
@@ -41,9 +35,9 @@ def get_result():
             except Exception as e:
                 # print("error : %s" % e)
                 return Response("fail", status=400)
-            return str(f'{filename}은 {result}')
+            return str(f'{filename} is {result}')
         else: 
-            return str('옵션을 선택해주세요.')
+            return str('Please select your virus - cell.')
     # return str(f'{filename}은 {result}')
 
 
@@ -65,8 +59,8 @@ def TCID50_calculator():
        except Exception as e:
            print("error : %s" % e)
            return Response("fail", status=400)    
-    return str(f'TCID50의 값은 10^{result}입니다.')
+    return str(f'10^{result} TCID50/mL')
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=os.environ.get('PORT', 80))
+    app.run(host='0.0.0.0', port=3000)

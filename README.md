@@ -1,7 +1,7 @@
 # CellPin
 This application offer two functions.
-    - classify whether cells in the given image(X100 magnification) are normal or infected(CPE).
-    - calculate the TCID50 by entering the following variables.
+    - classifies whether cells in the given image(X100 magnification) are CPE or No CPE
+    - calculates the TCID50 by entering the following variables.
 
 ## Contribution
 CellPin Team building
@@ -26,7 +26,7 @@ docker build -t cellpin .
 
 ## How to run thru Docker
 ```sh
-docker run -p cellpin
+docker run -it -p 80:80 cellpin
 ```
 
 ## Reference
