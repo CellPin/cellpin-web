@@ -21,12 +21,12 @@ Data Contribution: Virology Lab(Hye Kwon Kim, D.V.M., Ph. D. Assistant Professor
 
 ## How to install thru Docker
 ```sh
-docker build -t cellpin .
+docker build -t zionjpark5993/cellpin:cellpin .
 ```
 
 ## How to run thru Docker
 ```sh
-docker run -it -p 80:80 cellpin
+docker run -p 80:80 zionjpark5993/cellpin:cellpin
 ```
 
 ## Reference
