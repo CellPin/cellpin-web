@@ -33,12 +33,10 @@ def get_result():
                 file.save(os.path.join("../images/", filename))
                 result = prediction_base(model, os.path.join("../images/", filename))
             except Exception as e:
-                # print("error : %s" % e)
                 return Response("fail", status=400)
             return str(f'{filename} is {result}')
         else: 
             return str('Please select your virus - cell.')
-    # return str(f'{filename}은 {result}')
 
 
 
@@ -63,4 +61,4 @@ def TCID50_calculator():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=3000)
+    app.run(host='0.0.0.0', port=80)
