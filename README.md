@@ -1,7 +1,11 @@
 # CellPin
-This application offer two functions.
-    - classifies whether cells in the given image(X100 magnification) are CPE or No CPE
+This application offer two functions. <br/>
+    - classifies whether cells in the given image(X100 magnification) are CPE or No CPE. <br/>
     - calculates the TCID50 by entering the following variables.
+
+## How to work (Click on image.)
+
+[![CellPin 팀 웹페이지 시연영상](https://img.youtube.com/vi/yzHPEwOc6MA/0.jpg)](https://youtu.be/yzHPEwOc6MA&t=0s)
 
 ## Contribution
 CellPin Team building
