@@ -30,10 +30,10 @@ def process_path(file_path):
     img = decode_img(img)
     return img, label
 
-#  모델 만드는 함수 (가중치 처리)
+#  모델 만드는 함수
 def model_build():
     vgg_layer = tf.keras.applications.VGG19(include_top = False,
-                                            weights = "imagenet",
+                                            weights = None,
                                             input_shape = (256, 256, 3),
                                             classes = 1,
                                             classifier_activation = "sigmoid")
