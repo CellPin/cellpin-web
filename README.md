@@ -16,8 +16,8 @@ git clone https://github.com/CellPin.git
 [docker installation](https://docs.docker.com/engine/install/)  <br/>
 [nvidia docker installation](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html) (If you only want to get TCID50, you don't need to install this one.)
 
-3. Download a weight file. <br/>
-https://drive.google.com/file/d/1DriLyB7HF9IYx_faGO0QCsNGzRNwZWNw/view?usp=sharing
+3. Download the weight file below. <br/>
+Download https://drive.google.com/file/d/1DriLyB7HF9IYx_faGO0QCsNGzRNwZWNw/view?usp=sharing
 and move into `CellpinWeb/models/` path.
 
 4. Build a Docker file and Run a Docker image.
@@ -28,7 +28,7 @@ sudo docker run -p 80:80 cellpin:latest (If you only want to get TCID50 ...)
 sudo docker run --gpus '"device=0"' -p 80:80 cellpin:latest (Depending on the number of GPU units, you can add device numbers.)
 ```
 
-5. Check your browser
+5. Check your browser <br/>
 Type 127.0.0.1:80 into your browser.
 
 
